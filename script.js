@@ -178,59 +178,28 @@ document.querySelectorAll('.reveal').forEach((el, i) => {
   observer.observe(el);
 });
 
-/* ---------- 7. Музыка (Web Audio) ---------- */
-let audioCtx = null, musicPlaying = false, musicTimer = null, noteIndex = 0;
+/* ---------- 7. Музыка (свой MP3) ---------- */
 const musicBtn = document.getElementById('musicToggle');
+const bgMusic = new Audio('46ceb9e3-35b1-4dbf-a4d8-eddd897fceae_TikTok.mp3');
+bgMusic.loop = true;
+bgMusic.volume = 0.5;
 
-const melody = [
-  523.25, 659.25, 783.99, 1046.50, 783.99, 659.25, 587.33, 698.46,
-  880.00, 1046.50, 880.00, 698.46, 523.25, 659.25, 783.99, 659.25
-];
+let musicPlaying = false;
 
 function startMusic() {
   if (musicPlaying) return;
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  if (audioCtx.state === 'suspended') audioCtx.resume();
-  musicPlaying = true;
-  musicBtn.classList.add('playing');
-
-  const playNote = () => {
-    if (!musicPlaying) return;
-    const now = audioCtx.currentTime;
-    const freq = melody[noteIndex % melody.length];
-
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq, now);
-    gain.gain.setValueAtTime(0, now);
-    gain.gain.linearRampToValueAtTime(0.065, now + 0.04);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 1.6);
-    osc.connect(gain).connect(audioCtx.destination);
-    osc.start(now);
-    osc.stop(now + 1.7);
-
-    const osc2 = audioCtx.createOscillator();
-    const gain2 = audioCtx.createGain();
-    osc2.type = 'triangle';
-    osc2.frequency.setValueAtTime(freq * 2, now);
-    gain2.gain.setValueAtTime(0, now);
-    gain2.gain.linearRampToValueAtTime(0.015, now + 0.04);
-    gain2.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
-    osc2.connect(gain2).connect(audioCtx.destination);
-    osc2.start(now);
-    osc2.stop(now + 1.3);
-
-    noteIndex++;
-  };
-  playNote();
-  musicTimer = setInterval(playNote, 720);
+  bgMusic.play().then(() => {
+    musicPlaying = true;
+    musicBtn.classList.add('playing');
+  }).catch(err => {
+    console.warn('Не удалось запустить музыку:', err);
+  });
 }
 
 function stopMusic() {
+  bgMusic.pause();
   musicPlaying = false;
   musicBtn.classList.remove('playing');
-  if (musicTimer) clearInterval(musicTimer);
 }
 
 musicBtn.addEventListener('click', () => {
