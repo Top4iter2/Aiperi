@@ -1,413 +1,166 @@
 <!DOCTYPE html>
-<html lang="ru" class="no-js">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#0f0805">
-  <meta name="description" content="Для неё.">
-  <title>Для неё · M'Dee — Нужна</title>
-
-  <script>document.documentElement.classList.remove('no-js');</script>
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='%23d4a574'/%3E%3C/svg%3E">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1a0612">
+<title>Айпери — 20 ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ========== ФОНОВАЯ МУЗЫКА ========== -->
-  <!-- Положи файл в music/mdee-nuzhna.mp3 -->
-  <audio id="bg-music" loop preload="auto" playsinline>
-    <source src="nuzhna.mp3" type="audio/mpeg">
-  </audio>
+<!-- Canvas для конфетти -->
+<canvas id="confetti"></canvas>
 
-  <!-- ========== АТМОСФЕРНЫЙ ФОН ========== -->
-  <div class="atmosphere" aria-hidden="true">
-    <div class="atmosphere__glow atmosphere__glow--1"></div>
-    <div class="atmosphere__glow atmosphere__glow--2"></div>
-    <div class="atmosphere__glow atmosphere__glow--3"></div>
-    <div class="atmosphere__dust" id="dust"></div>
-    <div class="atmosphere__vignette"></div>
-    <div class="atmosphere__grain"></div>
+<!-- ======= SPLASH ======= -->
+<section class="splash" id="splash">
+  <div class="hearts-bg" id="heartsBg"></div>
+  <div class="splash-content">
+    <p class="splash-pre">Для самой любимой</p>
+    <h1 class="splash-name">Айпери</h1>
+    <div class="splash-age">
+      <span class="age-num">20</span>
+      <span class="age-label">лет</span>
+    </div>
+    <p class="splash-hint">Нажми, чтобы открыть</p>
+    <button class="open-btn" id="openBtn">
+      <span class="btn-heart">❤</span>
+      <span>Открыть подарок</span>
+    </button>
   </div>
+</section>
 
-  <!-- ========== HERO ========== -->
-  <header class="hero">
-    <div class="hero__content">
-      <p class="hero__kicker">для тебя</p>
+<!-- ======= MAIN ======= -->
+<main class="main" id="main">
 
-      <div class="hero__ornament" aria-hidden="true">
-        <span></span>
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 21 C12 21, 2 14, 2 8 C2 5, 4 3, 7 3 C9 3, 11 5, 12 7 C13 5, 15 3, 17 3 C20 3, 22 5, 22 8 C22 14, 12 21, 12 21 Z"/>
-        </svg>
-        <span></span>
-      </div>
+  <!-- Кнопка музыки -->
+  <button class="music-toggle" id="musicToggle" aria-label="Музыка">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M9 18V5l12-2v13"/>
+      <circle cx="6" cy="18" r="3"/>
+      <circle cx="18" cy="16" r="3"/>
+    </svg>
+  </button>
 
-      <!-- ↓↓↓ ЗАМЕНИ НА ЕЁ ИМЯ ↓↓↓ -->
-      <h1 class="hero__name">
-        <span class="hero__name-line"></span>
-        <span class="hero__name-line hero__name-line--accent">Нурия</span>
+  <!-- ======= HERO ======= -->
+  <section class="hero section">
+    <div class="hero-inner">
+      <p class="eyebrow reveal">Сегодня особенный день</p>
+      <h1 class="hero-title reveal">
+        С днём рождения,<br>
+        <span class="hero-name">Айпери</span>
       </h1>
-
-      <p class="hero__lead">
-        Я писал это, когда не мог сказать вслух.<br>
-        Сегодня я собрал все свои слова в одном месте —<br>
-        чтобы ты знала. И чтобы я отпустил.
+      <div class="hero-age reveal">
+        <span class="age-glow">20</span>
+        <span class="age-sub">тебе исполняется</span>
+      </div>
+      <p class="hero-text reveal">
+        Двадцать лет — это двадцать причин улыбаться.<br>
+        А я счастлив, что могу разделить их с тобой.
       </p>
-
-      <div class="hero__meta">
-        <span class="hero__meta-line"></span>
-        <span class="hero__meta-text">под песню «Нужна» — M'Dee</span>
-        <span class="hero__meta-line"></span>
+      <div class="scroll-hint reveal">
+        <span>листай вниз</span>
+        <div class="scroll-line"></div>
       </div>
     </div>
+  </section>
 
-    <div class="hero__scroll" aria-hidden="true">
-      <span>листай</span>
-      <i></i>
+  <!-- ======= PHOTOS ======= -->
+  <section class="photos section">
+    <h2 class="section-title reveal">Мои любимые моменты</h2>
+    <p class="section-sub reveal">с тобой</p>
+
+    <div class="gallery">
+      <div class="photo-card tilt-left reveal">
+        <div class="photo-inner">
+          <img src="photos/1.jpg" alt="Наш момент" onerror="this.style.display='none'; this.parentElement.classList.add('empty')">
+          <div class="photo-fallback">❤</div>
+        </div>
+        <p class="caption">Твоя улыбка</p>
+      </div>
+
+      <div class="photo-card tilt-right reveal">
+        <div class="photo-inner">
+          <img src="photos/2.jpg" alt="Наш момент" onerror="this.style.display='none'; this.parentElement.classList.add('empty')">
+          <div class="photo-fallback">❤</div>
+        </div>
+        <p class="caption">Наши прогулки</p>
+      </div>
+
+      <div class="photo-card tilt-left reveal">
+        <div class="photo-inner">
+          <img src="photos/3.jpg" alt="Наш момент" onerror="this.style.display='none'; this.parentElement.classList.add('empty')">
+          <div class="photo-fallback">❤</div>
+        </div>
+        <p class="caption">Твой смех</p>
+      </div>
+
+      <div class="photo-card tilt-right reveal">
+        <div class="photo-inner">
+          <img src="photos/4.jpg" alt="Наш момент" onerror="this.style.display='none'; this.parentElement.classList.add('empty')">
+          <div class="photo-fallback">❤</div>
+        </div>
+        <p class="caption">Мой мир — это ты</p>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main>
-
-    <!-- ============================================================
-         ГЛАВА I · «Как я влюбился, не заметив» (стих 3)
-         ============================================================ -->
-    <section class="chapter" aria-labelledby="ch-1">
-      <div class="chapter__marker" aria-hidden="true">
-        <span class="chapter__numeral">I</span>
-        <span class="chapter__dot"></span>
-      </div>
-
-      <div class="chapter__header reveal">
-        <p class="chapter__label">глава первая</p>
-        <h2 class="chapter__title" id="ch-1">Как я влюбился,<br>не заметив</h2>
-        <p class="chapter__sub">и как ошибся, показав тебе это</p>
-      </div>
-
-      <div class="poem">
-        <p class="stanza reveal">
-          Влюблённость свою<br>
-          Не заметил я сразу<br>
-          Думал я что это<br>
-          Просто симпатия
-        </p>
-
-        <p class="stanza reveal">
-          Влюблённый парень<br>
-          Влюблённость свою<br>
-          Не станет показывать<br>
-          Вообще никому
-        </p>
-
-        <p class="stanza reveal">
-          Ошибку я сделал<br>
-          Показав я свою<br>
-          Влюблённость к тебе<br>
-          Всем наяву
-        </p>
-
-        <p class="stanza stanza--last reveal">
-          А знаешь ли ты<br>
-          Про влюблённость мою<br>
-          А знаешь ли ты<br>
-          О ком свои стихи я пишу
-        </p>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         ГЛАВА II · «Как я понял, что это безответно» (стих 1)
-         ============================================================ -->
-    <section class="chapter chapter--alt" aria-labelledby="ch-2">
-      <div class="chapter__marker" aria-hidden="true">
-        <span class="chapter__numeral">II</span>
-        <span class="chapter__dot"></span>
-      </div>
-
-      <div class="chapter__header reveal">
-        <p class="chapter__label">глава вторая</p>
-        <h2 class="chapter__title" id="ch-2">Как я осознал<br>что получу я безответность</h2>
-        <p class="chapter__sub">знаю я не твой типаж но...</p>
-      </div>
-
-      <div class="poem">
-        <p class="stanza reveal">
-          Какого это когда<br>
-          Любовь взаимна<br>
-          Мне это не знакомо<br>
-          По мне это видно
-        </p>
-
-        <p class="stanza reveal">
-          Безответная любовь<br>
-          Знакомо каждому<br>
-          Но у всех это бывает<br>
-          Совсем по разному
-        </p>
-
-        <p class="stanza reveal">
-          Любовь безответная<br>
-          Бывало у каждого<br>
-          Но каждый из нас<br>
-          Воспринял по разному
-        </p>
-
-        <p class="stanza stanza--last reveal">
-          Кто-то закрыл<br>
-          Своё сердце навсегда<br>
-          Оставив без шансов<br>
-          Не всех а меня
-        </p>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         ГАЛЕРЕЯ · «Ты» (вставить фото)
-         ============================================================ -->
-    <section class="gallery" aria-labelledby="gallery-title">
-      <div class="gallery__header reveal">
-        <p class="chapter__label">между строк</p>
-        <h2 class="chapter__title" id="gallery-title">Ты</h2>
-        <p class="chapter__sub">такая, какой я тебя запомнил</p>
-      </div>
-
-      <!--
-        👇 ЗАМЕНИ ПУТИ НА СВОИ ФОТО.
-        Клади файлы в папку photos/.
-        Если файла нет — покажется красивый плейсхолдер.
-      -->
-      <div class="polaroids">
-        <figure class="polaroid reveal">
-          <div class="polaroid__frame">
-            <img src="photos/her-1.jpg" alt="Ты" loading="lazy"
-                 onerror="this.parentElement.parentElement.classList.add('is-empty')">
-            <div class="polaroid__ph" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                <circle cx="12" cy="13" r="8"/>
-                <circle cx="12" cy="13" r="3"/>
-              </svg>
-            </div>
-          </div>
-          <figcaption class="polaroid__caption">первый день, когда я тебя увидел</figcaption>
-        </figure>
-
-        <figure class="polaroid polaroid--tilt-l reveal">
-          <div class="polaroid__frame">
-            <img src="photos/her-2.jpg" alt="Ты" loading="lazy"
-                 onerror="this.parentElement.parentElement.classList.add('is-empty')">
-            <div class="polaroid__ph" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                <circle cx="12" cy="13" r="8"/>
-                <circle cx="12" cy="13" r="3"/>
-              </svg>
-            </div>
-          </div>
-          <figcaption class="polaroid__caption">твоя улыбка</figcaption>
-        </figure>
-
-        <figure class="polaroid polaroid--tilt-r reveal">
-          <div class="polaroid__frame">
-            <img src="photos/her-3.jpg" alt="Ты" loading="lazy"
-                 onerror="this.parentElement.parentElement.classList.add('is-empty')">
-            <div class="polaroid__ph" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                <circle cx="12" cy="13" r="8"/>
-                <circle cx="12" cy="13" r="3"/>
-              </svg>
-            </div>
-          </div>
-          <figcaption class="polaroid__caption">день, который я не забуду</figcaption>
-        </figure>
-
-        <figure class="polaroid polaroid--tilt-l-sm reveal">
-          <div class="polaroid__frame">
-            <img src="photos/her-4.jpg" alt="Ты" loading="lazy"
-                 onerror="this.parentElement.parentElement.classList.add('is-empty')">
-            <div class="polaroid__ph" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                <circle cx="12" cy="13" r="8"/>
-                <circle cx="12" cy="13" r="3"/>
-              </svg>
-            </div>
-          </div>
-          <figcaption class="polaroid__caption">просто ты</figcaption>
-        </figure>
-      </div>
-
-      <p class="gallery__note reveal">
-        каждое фото — как отдельный вечер,<br>
-        который я пересматриваю, когда не могу уснуть
+  <!-- ======= LETTER ======= -->
+  <section class="letter section">
+    <div class="letter-card reveal">
+      <div class="letter-ornament">❦</div>
+      <p class="letter-text">
+        Милая Айпери,<br><br>
+        в этот день двадцать лет назад мир стал чуть светлее — потому что появилась ты.
+        А недавно этот мир стал светлее ещё раз — потому что в нём появилась ты <i>для меня</i>.
       </p>
-    </section>
-
-    <!-- ============================================================
-         ГЛАВА III · «Что я помню» (стих 2)
-         ============================================================ -->
-    <section class="chapter" aria-labelledby="ch-3">
-      <div class="chapter__marker" aria-hidden="true">
-        <span class="chapter__numeral">III</span>
-        <span class="chapter__dot"></span>
-      </div>
-
-      <div class="chapter__header reveal">
-        <p class="chapter__label">глава третья</p>
-        <h2 class="chapter__title" id="ch-3">Спасибо за безответную<br>Красивую влюблённость</h2>
-        <p class="chapter__sub">ту влюблённость что уже не вернуть</p>
-      </div>
-
-      <div class="poem">
-        <p class="stanza reveal">
-          Мне так нравилось<br>
-          Любить одну лишь тебя<br>
-          Не выходишь<br>
-          Из сердца ты у меня
-        </p>
-
-        <p class="stanza reveal">
-          Каждый миг каждый час<br>
-          Проведённый с тобой<br>
-          Не забуду уже<br>
-          Навеки веков
-        </p>
-
-        <p class="stanza reveal">
-          Временами бывает<br>
-          Вспоминаю тебя<br>
-          Вспоминаешь ли ты<br>
-          Вообще про меня?
-        </p>
-
-        <p class="stanza reveal">
-          Повернуть время вспять<br>
-          Не получится уже<br>
-          Общение с тобой<br>
-          Не вернуть мне уже
-        </p>
-
-        <p class="stanza stanza--last reveal">
-          Любовь бывает<br>
-          Разного типа<br>
-          Но моя любовь к тебе<br>
-          Неповторима
-        </p>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         ГЛАВА IV · «Что я сказал» (стих 4)
-         ============================================================ -->
-    <section class="chapter chapter--alt" aria-labelledby="ch-4">
-      <div class="chapter__marker" aria-hidden="true">
-        <span class="chapter__numeral">IV</span>
-        <span class="chapter__dot"></span>
-      </div>
-
-      <div class="chapter__header reveal">
-        <p class="chapter__label">глава четвёртая</p>
-        <h2 class="chapter__title" id="ch-4">Что я сказал<br>тебе тогда</h2>
-        <p class="chapter__sub">и о чём жалею временами</p>
-      </div>
-
-      <div class="poem">
-        <p class="stanza reveal">
-          Открылся тебе,<br>
-          Открылся наяву.<br>
-          Признался тебе,<br>
-          Признаюсь до сих пор.
-        </p>
-
-        <p class="stanza reveal">
-          Признавшись тебе,<br>
-          Оттолкнул я тебя.<br>
-          Я не хотел, чтобы ты<br>
-          Оттолкнулась от меня.
-        </p>
-
-        <p class="stanza reveal">
-          Боялся я сильно,<br>
-          Что наше общение<br>
-          Признавшись тебе,<br>
-          Исчезнет бесследно.
-        </p>
-
-        <p class="stanza stanza--last reveal">
-          Благо, что наше<br>
-          Общение осталось,<br>
-          Благо, что мы<br>
-          Не прекратили общение.
-        </p>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         ФИНАЛ · ОТПУСКАЮ
-         ============================================================ -->
-    <section class="release" aria-labelledby="release-title">
-      <div class="release__header reveal">
-        <p class="chapter__label">эпилог</p>
-        <h2 class="chapter__title" id="release-title">Пора отпустить</h2>
-      </div>
-
-      <p class="release__lead reveal">
-        Я больше не держу это в себе.<br>
-        Нажми на свет — и я скажу то, что должен.
+      <p class="letter-text">
+        Спасибо за твой смех, за твои глаза, за каждую минуту, что ты рядом.
+        Ты — то самое «своё» место, куда хочется возвращаться снова и снова.
       </p>
+      <p class="letter-text">
+        Пусть этот год принесёт тебе всё, о чём ты мечтаешь.
+        А я обещаю быть рядом — держать за руку и любить.
+      </p>
+      <p class="letter-sign">С любовью,<br><span class="signature">твой навсегда</span></p>
+    </div>
+  </section>
 
-      <button class="release__orb reveal" type="button" id="releaseOrb" aria-label="Нажми, чтобы отпустить">
-        <span class="release__orb-glow"></span>
-        <span class="release__orb-core"></span>
+  <!-- ======= WISHES ======= -->
+  <section class="wishes section">
+    <h2 class="section-title reveal">Мои пожелания</h2>
+    <p class="section-sub reveal">для тебя, любимая</p>
+
+    <ul class="wish-list">
+      <li class="wish-item reveal"><span class="wish-icon">✦</span> Пусть каждый день будет поводом для улыбки</li>
+      <li class="wish-item reveal"><span class="wish-icon">✦</span> Пусть мечты сбываются быстрее, чем ты загадываешь</li>
+      <li class="wish-item reveal"><span class="wish-icon">✦</span> Пусть рядом всегда будут люди, которые тебя ценят</li>
+      <li class="wish-item reveal"><span class="wish-icon">✦</span> Пусть глаза сияют так же ярко, как сейчас</li>
+      <li class="wish-item reveal"><span class="wish-icon">✦</span> И пусть я буду тем, кто видит это сияние каждый день</li>
+    </ul>
+  </section>
+
+  <!-- ======= FINAL ======= -->
+  <section class="final section">
+    <div class="final-inner">
+      <div class="final-heart reveal" id="finalHeart">❤</div>
+      <h2 class="final-title reveal">Люблю тебя</h2>
+      <p class="final-text reveal">
+        С днём рождения, Айпери.<br>
+        Ты — лучшее, что случилось со мной.
+      </p>
+      <button class="final-btn reveal" id="loveBtn">
+        Нажми, если любишь меня тоже ❤
       </button>
-
-      <p class="release__hint" id="releaseHint">нажми на свет</p>
-
-      <!--
-        👇 ЗАМЕНИ ЭТОТ ТЕКСТ НА СВОЙ — самое важное здесь.
-      -->
-      <div class="release__message" id="releaseMessage" hidden>
-        <p class="release__msg-lead">Я знаю</p>
-
-        <p class="release__msg-text">
-          Я знаю что ты меня и в упор не видела, я знаю что хотя ты говорила что считаешь меня за своего друга
-          Я прекрасно осведомлён что я для тебя даже и не друг, жаль что ты мне всё в лицо не говорила
-          Я прекрасно знаю что я для тебя ничего не значу, просто знай что ты навсегда останешься моей первой влюблённостью
-        </p>
-
-        <p class="release__msg-text">
-          Я не держу зла. Я не держу тебя. Я держу только благодарность — она останется со мной.
-        </p>
-
-        <p class="release__msg-sign">
-          ухожу с миром,<br>
-          <span>твой друг</span>
-        </p>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="footer__ornament" aria-hidden="true">
-      <span></span>
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 21 C12 21, 2 14, 2 8 C2 5, 4 3, 7 3 C9 3, 11 5, 12 7 C13 5, 15 3, 17 3 C20 3, 22 5, 22 8 C22 14, 12 21, 12 21 Z"/>
-      </svg>
-      <span></span>
+      <p class="final-sign reveal">Сделано с любовью, только для тебя</p>
     </div>
-    <p class="footer__text">
-     <br>
-      
-    </p>
-    <p class="footer__made">
-      сделано с душой · <span id="year"></span>
-    </p>
-  </footer>
+  </section>
 
-  <script src="script.js"></script>
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
