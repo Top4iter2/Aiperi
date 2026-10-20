@@ -12,9 +12,13 @@
 </head>
 <body>
 
+<!-- Canvas для конфетти -->
 <canvas id="confetti"></canvas>
 
-<!-- ===== SPLASH ===== -->
+<!-- Белая вспышка для эффекта "wow" -->
+<div class="flash" id="flash"></div>
+
+<!-- ============ SPLASH ============ -->
 <section class="splash" id="splash">
   <div class="hearts-bg" id="heartsBg"></div>
   <div class="splash-content">
@@ -32,7 +36,7 @@
   </div>
 </section>
 
-<!-- ===== MAIN ===== -->
+<!-- ============ MAIN ============ -->
 <main class="main" id="main">
 
   <button class="music-toggle" id="musicToggle" aria-label="Музыка">
@@ -87,6 +91,59 @@
     </div>
   </section>
 
+  <!-- ======== ВИДЕО ======== -->
+  <section class="videos section">
+    <h2 class="section-title reveal">Мгновения, которые я храню</h2>
+    <p class="section-sub reveal">в движении</p>
+
+    <div class="video-list">
+      <!-- Видео 1 — замените src и poster своими -->
+      <div class="video-card reveal">
+        <video src="videos/1.mp4" poster="videos/1.jpg" preload="metadata" playsinline></video>
+        <div class="video-overlay">
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <p class="video-caption">Твой смех</p>
+        </div>
+        <div class="video-empty">
+          <span>✦</span>
+          <p>Видео появится здесь</p>
+        </div>
+      </div>
+
+      <!-- Видео 2 -->
+      <div class="video-card reveal">
+        <video src="videos/2.mp4" poster="videos/2.jpg" preload="metadata" playsinline></video>
+        <div class="video-overlay">
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <p class="video-caption">Особенный момент</p>
+        </div>
+        <div class="video-empty">
+          <span>✦</span>
+          <p>Видео появится здесь</p>
+        </div>
+      </div>
+
+      <!-- Видео 3 -->
+      <div class="video-card reveal">
+        <video src="videos/3.mp4" poster="videos/3.jpg" preload="metadata" playsinline></video>
+        <div class="video-overlay">
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <p class="video-caption">Просто ты</p>
+        </div>
+        <div class="video-empty">
+          <span>✦</span>
+          <p>Видео появится здесь</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- WISHES -->
   <section class="wishes section">
     <h2 class="section-title reveal">Мои пожелания</h2>
@@ -101,12 +158,13 @@
     </ul>
   </section>
 
-  <!-- ENVELOPE -->
+  <!-- ======== КОНВЕРТ ======== -->
   <section class="envelope-section section">
     <h2 class="section-title reveal">У меня есть кое-что для тебя</h2>
     <p class="section-sub reveal">маленькое чудо</p>
 
     <div class="envelope-wrap reveal">
+      <!-- Сам конверт -->
       <div class="envelope" id="envelope">
         <div class="envelope-back"></div>
         <div class="envelope-letter"></div>
@@ -114,7 +172,20 @@
         <div class="envelope-flap"></div>
         <div class="envelope-seal">✦</div>
       </div>
-      <p class="envelope-hint">нажми на конверт</p>
+      <p class="envelope-hint" id="envelopeHint">нажми на конверт</p>
+
+      <!-- Карточка с QR — появляется после открытия -->
+      <div class="qr-card" id="qrCard">
+        <div class="qr-frame">
+          <img src="qr.png" alt="QR код" class="qr-img" id="qrImg">
+          <div class="qr-placeholder" id="qrPlaceholder"></div>
+        </div>
+        <p class="qr-caption">наведи камеру телефона</p>
+        <p class="qr-sub">там кое-что для тебя ✦</p>
+      </div>
+
+      <!-- Кнопка продолжения -->
+      <button class="continue-btn" id="continueBtn">а теперь чудо ✨</button>
     </div>
   </section>
 
@@ -124,9 +195,10 @@
 
 </main>
 
-<!-- ===== MIRACLE OVERLAY ===== -->
+<!-- ============ MIRACLE OVERLAY ============ -->
 <div class="miracle-overlay" id="miracleOverlay">
   <div class="miracle-stars" id="miracleStars"></div>
+  <div class="miracle-shower" id="miracleShower"></div>
 
   <div class="miracle-wish" id="miracleWish">
     <div class="wish-star">✦</div>
