@@ -146,19 +146,25 @@ body {
 @keyframes scrollAnim { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
 
 /* ==========================================
-   2. REELS (ФОТО-ЛЕНТА КАК В ТТ)
+   2. REELS (ФОТО-ЛЕНТА 9:16)
    ========================================== */
 .reels-section { padding: 60px 16px; align-items: center; }
 .reels-wrapper {
-  width: 100%; max-width: 360px; height: 70dvh; max-height: 600px;
-  border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 20px rgba(224,90,124,0.1);
-  border: 1px solid rgba(245,198,211,0.15); position: relative;
+  width: 100%; 
+  max-width: 360px; 
+  aspect-ratio: 9 / 16; /* Идеальные пропорции для твоих фото */
+  max-height: 75dvh;
+  border-radius: 20px; 
+  overflow: hidden; 
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 20px rgba(224,90,124,0.1);
+  border: 1px solid rgba(245,198,211,0.15); 
+  position: relative;
 }
 .reels-container {
   width: 100%; height: 100%; overflow-y: scroll;
   scroll-snap-type: y mandatory; scroll-behavior: smooth;
   -ms-overflow-style: none; scrollbar-width: none;
-  overscroll-behavior: contain; /* Не дает скроллить сайт, пока листаем фото */
+  overscroll-behavior: contain; 
   background: #000;
 }
 .reels-container::-webkit-scrollbar { display: none; }
@@ -168,7 +174,7 @@ body {
   position: relative; background: #1a0d15;
 }
 .reel-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 8s ease-out; }
-.reel-card.active img { transform: scale(1.1); } /* Плавный зум */
+.reel-card.active img { transform: scale(1.1); }
 
 .reel-overlay {
   position: absolute; bottom: 0; left: 0; right: 0;
@@ -191,7 +197,50 @@ body {
 @keyframes bounceHint { 0%, 100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(6px); opacity: 1; } }
 
 /* ==========================================
-   3. ПИСЬМО
+   3. ВИДЕО "Я ТЕБЯ ЛЮБЛЮ"
+   ========================================== */
+.video-section { align-items: center; text-align: center; }
+.video-wrapper {
+  position: relative;
+  width: 100%; 
+  max-width: 360px;
+  aspect-ratio: 9 / 16;
+  max-height: 75dvh;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid rgba(245,198,211,0.2);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 30px rgba(224,90,124,0.15);
+  margin: 0 auto;
+}
+.love-video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.video-overlay {
+  position: absolute; inset: 0;
+  background: rgba(10,5,16,0.65);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px;
+  cursor: pointer; transition: opacity 0.4s ease;
+}
+.video-overlay.hidden { opacity: 0; pointer-events: none; }
+.play-btn {
+  width: 70px; height: 70px; border-radius: 50%;
+  background: linear-gradient(135deg, #e05a7c, #a83a5a);
+  display: flex; align-items: center; justify-content: center;
+  color: white; box-shadow: 0 10px 30px rgba(224,90,124,0.5);
+  animation: pulsePlay 2s infinite;
+}
+.play-btn svg { width: 30px; height: 30px; margin-left: 4px; }
+@keyframes pulsePlay {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+.video-overlay p {
+  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blush);
+}
+
+/* ==========================================
+   4. ПИСЬМО
    ========================================== */
 .letter-section { padding: 60px 20px; }
 .letter-card {
@@ -210,7 +259,7 @@ body {
 .signature { font-family: 'Great Vibes', cursive; font-size: 30px; color: var(--rose); display: inline-block; margin-top: 5px; }
 
 /* ==========================================
-   4. ПОЖЕЛАНИЯ
+   5. ПОЖЕЛАНИЯ
    ========================================== */
 .wishes-section { align-items: center; }
 .wish-list { list-style: none; max-width: 400px; width: 100%; display: flex; flex-direction: column; gap: 12px; margin: 0 auto; }
@@ -222,7 +271,7 @@ body {
 .wish-item span { color: var(--rose); font-size: 14px; margin-top: 2px; }
 
 /* ==========================================
-   5. КОНВЕРТ И QR
+   6. КОНВЕРТ И QR
    ========================================== */
 .envelope-section { align-items: center; text-align: center; }
 .envelope-wrap { display: flex; flex-direction: column; align-items: center; width: 100%; position: relative; }
@@ -255,7 +304,6 @@ body {
   color: #4a1e37; font-size: 18px; box-shadow: 0 4px 15px rgba(232,201,119,0.5); transition: all 0.4s;
 }
 
-/* Анимация открытия */
 .envelope.opened .env-flap { transform: rotateX(-180deg); }
 .envelope.opened .env-seal { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
 .envelope.opened .env-letter { transform: translateY(-40px); }
@@ -273,7 +321,7 @@ body {
   padding: 20px; background: rgba(42,18,34,0.95); border: 1px solid rgba(245,198,211,0.2);
   border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.6);
   opacity: 0; transform: translateY(20px) scale(0.9); transition: all 0.6s cubic-bezier(0.34,1.56,0.64,1); pointer-events: none;
-  position: absolute; top: 0; left: 50%; margin-left: -130px; width: 260px; /* Центрируем поверх конверта */
+  position: absolute; top: 0; left: 50%; margin-left: -130px; width: 260px;
 }
 .qr-card.show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
 .qr-frame { width: 160px; height: 160px; background: #fff; padding: 10px; border-radius: 12px; position: relative; overflow: hidden; }
@@ -360,11 +408,11 @@ body {
 @media (max-height: 700px) {
   .section { padding: 50px 20px; }
   .hero-num { font-size: 100px; }
-  .reels-wrapper { height: 65dvh; }
+  .reels-wrapper, .video-wrapper { max-height: 65dvh; }
   .splash-name { font-size: 60px; }
   .splash-num { font-size: 80px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-            }
+   }
