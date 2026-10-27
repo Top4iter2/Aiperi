@@ -152,7 +152,7 @@ body {
 .reels-wrapper {
   width: 100%; 
   max-width: 360px; 
-  aspect-ratio: 9 / 16; /* Идеальные пропорции для твоих фото */
+  aspect-ratio: 9 / 16;
   max-height: 75dvh;
   border-radius: 20px; 
   overflow: hidden; 
@@ -197,50 +197,7 @@ body {
 @keyframes bounceHint { 0%, 100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(6px); opacity: 1; } }
 
 /* ==========================================
-   3. ВИДЕО "Я ТЕБЯ ЛЮБЛЮ"
-   ========================================== */
-.video-section { align-items: center; text-align: center; }
-.video-wrapper {
-  position: relative;
-  width: 100%; 
-  max-width: 360px;
-  aspect-ratio: 9 / 16;
-  max-height: 75dvh;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #000;
-  border: 1px solid rgba(245,198,211,0.2);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 30px rgba(224,90,124,0.15);
-  margin: 0 auto;
-}
-.love-video {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-}
-.video-overlay {
-  position: absolute; inset: 0;
-  background: rgba(10,5,16,0.65);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px;
-  cursor: pointer; transition: opacity 0.4s ease;
-}
-.video-overlay.hidden { opacity: 0; pointer-events: none; }
-.play-btn {
-  width: 70px; height: 70px; border-radius: 50%;
-  background: linear-gradient(135deg, #e05a7c, #a83a5a);
-  display: flex; align-items: center; justify-content: center;
-  color: white; box-shadow: 0 10px 30px rgba(224,90,124,0.5);
-  animation: pulsePlay 2s infinite;
-}
-.play-btn svg { width: 30px; height: 30px; margin-left: 4px; }
-@keyframes pulsePlay {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-.video-overlay p {
-  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blush);
-}
-
-/* ==========================================
-   4. ПИСЬМО
+   3. ПИСЬМО
    ========================================== */
 .letter-section { padding: 60px 20px; }
 .letter-card {
@@ -255,29 +212,32 @@ body {
   font-size: 18px; box-shadow: 0 5px 20px rgba(224,90,124,0.5);
 }
 .letter-text { font-size: 14px; line-height: 1.8; color: rgba(255,245,248,0.9); margin-bottom: 15px; font-weight: 300; }
-.letter-sign { font-family: 'Playfair Display', serif; font-style: italic; color: var(--blush); margin-top: 25px; text-align: right; font-size: 14px; }
-.signature { font-family: 'Great Vibes', cursive; font-size: 30px; color: var(--rose); display: inline-block; margin-top: 5px; }
 
 /* Блок с извинениями */
 .letter-apology {
-  background: rgba(232, 201, 119, 0.08); /* Легкий золотистый фон */
-  border-left: 3px solid var(--gold);    /* Золотая полоска слева */
+  background: rgba(232, 201, 119, 0.08);
+  border-left: 3px solid var(--gold);
   padding: 15px 18px;
   margin: 20px 0;
   border-radius: 0 12px 12px 0;
   animation: apologyGlow 3s infinite alternate;
 }
-
 @keyframes apologyGlow {
   0% { box-shadow: inset 0 0 15px rgba(232, 201, 119, 0.05); }
   100% { box-shadow: inset 0 0 25px rgba(232, 201, 119, 0.15); }
 }
+.letter-apology p {
+  font-size: 14px; line-height: 1.7; color: rgba(255, 245, 248, 0.95); font-weight: 300; margin: 0;
+}
+.letter-apology strong {
+  color: var(--gold); font-weight: 500;
+}
 
-
-
+.letter-sign { font-family: 'Playfair Display', serif; font-style: italic; color: var(--blush); margin-top: 25px; text-align: right; font-size: 14px; }
+.signature { font-family: 'Great Vibes', cursive; font-size: 30px; color: var(--rose); display: inline-block; margin-top: 5px; }
 
 /* ==========================================
-   5. ПОЖЕЛАНИЯ
+   4. ПОЖЕЛАНИЯ
    ========================================== */
 .wishes-section { align-items: center; }
 .wish-list { list-style: none; max-width: 400px; width: 100%; display: flex; flex-direction: column; gap: 12px; margin: 0 auto; }
@@ -289,7 +249,7 @@ body {
 .wish-item span { color: var(--rose); font-size: 14px; margin-top: 2px; }
 
 /* ==========================================
-   6. КОНВЕРТ И QR
+   5. КОНВЕРТ И QR
    ========================================== */
 .envelope-section { align-items: center; text-align: center; }
 .envelope-wrap { display: flex; flex-direction: column; align-items: center; width: 100%; position: relative; }
@@ -426,7 +386,7 @@ body {
 @media (max-height: 700px) {
   .section { padding: 50px 20px; }
   .hero-num { font-size: 100px; }
-  .reels-wrapper, .video-wrapper { max-height: 65dvh; }
+  .reels-wrapper { max-height: 65dvh; }
   .splash-name { font-size: 60px; }
   .splash-num { font-size: 80px; }
 }
