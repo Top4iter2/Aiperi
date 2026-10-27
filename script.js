@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- 1. МУЗЫКА (СВОЙ ФАЙЛ) ---------- */
   // 👇 ЗАКИНЬ СВОЙ ФАЙЛ В ПАПКУ С САЙТОМ И НАЗОВИ ЕГО music.mp3
-  const bgMusic = new Audio('46ceb9e3-35b1-4dbf-a4d8-eddd897fceae_TikTok.mp3'); 
+  const bgMusic = new Audio('music.mp3'); 
   bgMusic.loop = true;
   bgMusic.volume = 0.5;
 
