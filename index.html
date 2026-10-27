@@ -66,7 +66,7 @@
     </div>
   </section>
 
-  <!-- 2. ФОТО-ЛЕНТА (КАК В ТТ) -->
+  <!-- 2. ФОТО-ЛЕНТА (10 ШТУК) -->
   <section class="section reels-section">
     <h2 class="section-title anim-reveal">Мгновения</h2>
     <p class="section-subtitle anim-reveal">листай вверх</p>
@@ -74,47 +74,56 @@
     <div class="reels-wrapper anim-reveal">
       <div class="reels-container" id="reelsContainer">
         
-        <!-- КАРТОЧКА 1 -->
+        <!-- 1 -->
         <div class="reel-card">
-          <img src="photos/reel1.jpg" alt="Момент 1" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')">
-          <div class="reel-overlay">
-            <p class="reel-text">👥: она мечтает о многом.</p>
-          </div>
+          <img src="photos/1.jpg" alt="Момент 1" loading="lazy">
+          <div class="reel-overlay"><p class="reel-text">👥: она мечтает о многом.</p></div>
         </div>
-
-        <!-- КАРТОЧКА 2 -->
+        <!-- 2 -->
         <div class="reel-card">
-          <img src="photos/reel2.jpg" alt="Момент 2" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')">
-          <div class="reel-overlay">
-            <p class="reel-text">я буду уделять ей больше внимания.</p>
-          </div>
+          <img src="photos/2.jpg" alt="Момент 2" loading="lazy">
+          <div class="reel-overlay"><p class="reel-text">я буду уделять ей больше внимания.</p></div>
         </div>
-
-        <!-- КАРТОЧКА 3 -->
+        <!-- 3 -->
         <div class="reel-card">
-          <img src="photos/reel3.jpg" alt="Момент 3" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')">
-          <div class="reel-overlay">
-            <p class="reel-text">Твой текст здесь ✦</p>
-          </div>
+          <img src="photos/3.jpg" alt="Момент 3" loading="lazy">
+          <div class="reel-overlay"><p class="reel-text">Твой текст здесь ✦</p></div>
         </div>
-
-        <!-- КАРТОЧКА 4 -->
+        <!-- 4 -->
         <div class="reel-card">
-          <img src="photos/reel4.jpg" alt="Момент 4" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')">
-          <div class="reel-overlay">
-            <p class="reel-text">Твой текст здесь ✦</p>
-          </div>
+          <img src="photos/4.jpg" alt="Момент 4" loading="lazy">
+          <div class="reel-overlay"><p class="reel-text">Твой текст здесь ✦</p></div>
         </div>
-
-        <!-- КАРТОЧКА 5 -->
+        <!-- 5 -->
         <div class="reel-card">
-          <img src="photos/reel5.jpg" alt="Момент 5" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')">
-          <div class="reel-overlay">
-            <p class="reel-text">Твой текст здесь ✦</p>
-          </div>
+          <img src="photos/5.jpg" alt="Момент 5" loading="lazy">
+          <div class="reel-overlay"><p class="reel-text">Твой текст здесь ✦</p></div>
         </div>
-        
-        <!-- Добавляй сюда остальные карточки -->
+        <!-- 6 -->
+        <div class="reel-card">
+          <img src="photos/6.jpg" alt="Момент 6" loading="lazy">
+          <div class="reel-overlay"><p class="reel-text">Твой текст здесь ✦</p></div>
+        </div>
+        <!-- 7 -->
+        <div class="reel-card">
+          <img src="photos/7.jpg" alt="Момент 7" loading="lazy">
+          <div class="reel-overlay"><p class="reel-text">Твой текст здесь ✦</p></div>
+        </div>
+        <!-- 8 -->
+        <div class="reel-card">
+          <img src="photos/8.jpg" alt="Момент 8" loading="lazy">
+          <div class="reel-overlay"><p class="reel-text">Твой текст здесь ✦</p></div>
+        </div>
+        <!-- 9 -->
+        <div class="reel-card">
+          <img src="photos/9.jpg" alt="Момент 9" loading="lazy">
+          <div class="reel-overlay"><p class="reel-text">Твой текст здесь ✦</p></div>
+        </div>
+        <!-- 10 -->
+        <div class="reel-card">
+          <img src="photos/10.jpg" alt="Момент 10" loading="lazy">
+          <div class="reel-overlay"><p class="reel-text">Твой текст здесь ✦</p></div>
+        </div>
 
       </div>
     </div>
@@ -127,7 +136,25 @@
     </div>
   </section>
 
-  <!-- 3. ПИСЬМО -->
+  <!-- 3. ВИДЕО "Я ТЕБЯ ЛЮБЛЮ" -->
+  <section class="section video-section">
+    <h2 class="section-title anim-reveal">Кое-что важное</h2>
+    <p class="section-subtitle anim-reveal">я тебя люблю</p>
+
+    <div class="video-wrapper anim-reveal">
+      <!-- Закинь видео в папку video/love.mp4, а превью в video/poster.jpg -->
+      <video id="loveVideo" class="love-video" src="video/love.mp4" poster="video/poster.jpg" playsinline webkit-playsinline preload="metadata"></video>
+      
+      <div class="video-overlay" id="videoOverlay">
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <p>нажми, чтобы включить</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. ПИСЬМО -->
   <section class="section letter-section">
     <div class="letter-card anim-reveal">
       <div class="letter-icon">✦</div>
@@ -147,7 +174,7 @@
     </div>
   </section>
 
-  <!-- 4. ПОЖЕЛАНИЯ -->
+  <!-- 5. ПОЖЕЛАНИЯ -->
   <section class="section wishes-section">
     <h2 class="section-title anim-reveal">Мои пожелания</h2>
     <p class="section-subtitle anim-reveal">для тебя</p>
@@ -160,13 +187,12 @@
     </ul>
   </section>
 
-  <!-- 5. КОНВЕРТ И QR -->
+  <!-- 6. КОНВЕРТ И QR -->
   <section class="section envelope-section">
     <h2 class="section-title anim-reveal">У меня есть кое-что для тебя</h2>
     <p class="section-subtitle anim-reveal">маленькое чудо</p>
 
     <div class="envelope-wrap">
-      <!-- Конверт -->
       <div class="envelope anim-reveal" id="envelope">
         <div class="env-back"></div>
         <div class="env-letter"></div>
@@ -176,7 +202,6 @@
       </div>
       <p class="env-hint" id="envHint">нажми на конверт</p>
 
-      <!-- Карточка с QR -->
       <div class="qr-card" id="qrCard">
         <div class="qr-frame">
           <img src="qr.png" alt="QR" class="qr-img" id="qrImg">
@@ -185,7 +210,6 @@
         <p class="qr-caption">наведи камеру телефона</p>
       </div>
 
-      <!-- Кнопка Чуда -->
       <button class="btn-magic" id="magicBtn">а теперь чудо ✨</button>
     </div>
   </section>
@@ -199,14 +223,12 @@
 <div class="miracle-screen" id="miracleScreen">
   <div class="miracle-stars" id="miracleStars"></div>
   
-  <!-- Состояние 1: Звезда -->
   <div class="miracle-wish" id="miracleWish">
     <div class="wish-star">✦</div>
     <p class="wish-title">Загадай желание</p>
     <p class="wish-sub">Оно обязательно сбудется</p>
   </div>
 
-  <!-- Состояние 2: Текст -->
   <div class="miracle-msg" id="miracleMsg">
     <div class="msg-content" id="msgContent"></div>
     <button class="btn-close-miracle" id="closeMiracleBtn">закрыть ✦</button>
