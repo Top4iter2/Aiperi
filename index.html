@@ -12,68 +12,125 @@
 </head>
 <body>
 
-<!-- Canvas для конфетти -->
-<canvas id="confetti"></canvas>
+<!-- Глобальные элементы -->
+<canvas id="confettiCanvas"></canvas>
+<div class="flash-overlay" id="flashOverlay"></div>
 
-<!-- Белая вспышка для эффекта "wow" -->
-<div class="flash" id="flash"></div>
-
-<!-- ============ SPLASH ============ -->
-<section class="splash" id="splash">
-  <div class="hearts-bg" id="heartsBg"></div>
+<!-- ============ SPLASH (ЗАСТАВКА) ============ -->
+<section class="splash-screen" id="splashScreen">
+  <div class="splash-bg" id="splashBg"></div>
   <div class="splash-content">
-    <p class="splash-pre">Для дорогого человека</p>
+    <p class="splash-subtitle">Для дорогого человека</p>
     <h1 class="splash-name">Айпери</h1>
     <div class="splash-age">
-      <span class="age-num">20</span>
-      <span class="age-label">лет</span>
+      <span class="splash-num">20</span>
+      <span class="splash-label">лет</span>
     </div>
     <p class="splash-hint">Нажми, чтобы открыть</p>
-    <button class="open-btn" id="openBtn">
-      <span class="btn-star">✦</span>
-      <span>Открыть</span>
+    <button class="btn-primary" id="startBtn">
+      <span class="btn-star">✦</span> Открыть
     </button>
   </div>
 </section>
 
-<!-- ============ MAIN ============ -->
-<main class="main" id="main">
+<!-- ============ ОСНОВНОЙ САЙТ ============ -->
+<main class="main-content" id="mainContent">
 
-  <button class="music-toggle" id="musicToggle" aria-label="Музыка">
+  <!-- Кнопка музыки -->
+  <button class="music-btn" id="musicBtn" aria-label="Музыка">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M9 18V5l12-2v13"/>
-      <circle cx="6" cy="18" r="3"/>
-      <circle cx="18" cy="16" r="3"/>
+      <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
     </svg>
   </button>
 
-  <!-- HERO -->
-  <section class="hero section">
+  <!-- 1. HERO -->
+  <section class="section hero-section">
     <div class="hero-inner">
-      <p class="eyebrow reveal">Сегодня особенный день</p>
-      <h1 class="hero-title reveal">
+      <p class="eyebrow anim-reveal">Сегодня особенный день</p>
+      <h1 class="hero-title anim-reveal">
         С днём рождения,<br>
         <span class="hero-name">Айпери</span>
       </h1>
-      <div class="hero-age reveal">
-        <span class="age-glow">20</span>
-        <span class="age-sub">тебе исполняется</span>
+      <div class="hero-age anim-reveal">
+        <span class="hero-num">20</span>
+        <span class="hero-sub">тебе исполняется</span>
       </div>
-      <p class="hero-text reveal">
+      <p class="hero-desc anim-reveal">
         Двадцать лет — это двадцать причин для счастья.<br>
         И я хочу, чтобы все они сбылись.
       </p>
-      <div class="scroll-hint reveal">
+      <div class="scroll-indicator anim-reveal">
         <span>листай вниз</span>
         <div class="scroll-line"></div>
       </div>
     </div>
   </section>
 
-  <!-- LETTER -->
-  <section class="letter section">
-    <div class="letter-card reveal">
-      <div class="letter-ornament">✦</div>
+  <!-- 2. ФОТО-ЛЕНТА (КАК В ТТ) -->
+  <section class="section reels-section">
+    <h2 class="section-title anim-reveal">Мгновения</h2>
+    <p class="section-subtitle anim-reveal">листай вверх</p>
+
+    <div class="reels-wrapper anim-reveal">
+      <div class="reels-container" id="reelsContainer">
+        
+        <!-- КАРТОЧКА 1 -->
+        <div class="reel-card">
+          <img src="photos/reel1.jpg" alt="Момент 1" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')">
+          <div class="reel-overlay">
+            <p class="reel-text">👥: она мечтает о многом.</p>
+          </div>
+        </div>
+
+        <!-- КАРТОЧКА 2 -->
+        <div class="reel-card">
+          <img src="photos/reel2.jpg" alt="Момент 2" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')">
+          <div class="reel-overlay">
+            <p class="reel-text">я буду уделять ей больше внимания.</p>
+          </div>
+        </div>
+
+        <!-- КАРТОЧКА 3 -->
+        <div class="reel-card">
+          <img src="photos/reel3.jpg" alt="Момент 3" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')">
+          <div class="reel-overlay">
+            <p class="reel-text">Твой текст здесь ✦</p>
+          </div>
+        </div>
+
+        <!-- КАРТОЧКА 4 -->
+        <div class="reel-card">
+          <img src="photos/reel4.jpg" alt="Момент 4" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')">
+          <div class="reel-overlay">
+            <p class="reel-text">Твой текст здесь ✦</p>
+          </div>
+        </div>
+
+        <!-- КАРТОЧКА 5 -->
+        <div class="reel-card">
+          <img src="photos/reel5.jpg" alt="Момент 5" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')">
+          <div class="reel-overlay">
+            <p class="reel-text">Твой текст здесь ✦</p>
+          </div>
+        </div>
+        
+        <!-- Добавляй сюда остальные карточки -->
+
+      </div>
+    </div>
+    
+    <div class="swipe-hint anim-reveal">
+      <span>свайп</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 3. ПИСЬМО -->
+  <section class="section letter-section">
+    <div class="letter-card anim-reveal">
+      <div class="letter-icon">✦</div>
       <p class="letter-text">
         Милая Айпери,<br><br>
         в этот день двадцать лет назад мир стал чуть светлее — потому что появилась ты.
@@ -85,130 +142,74 @@
       </p>
       <p class="letter-text">
         Я очень ценю тебя. Не за что-то конкретное — а просто за то, что ты есть.
-        И это, поверь, много значит.
       </p>
-      <p class="letter-sign">От всего сердца,<br><span class="signature">от Торогелди</span></p>
+      <p class="letter-sign">От всего сердца,<br><span class="signature">твой друг</span></p>
     </div>
   </section>
 
-  <!-- ======== ВИДЕО ======== -->
-  <section class="videos section">
-    <h2 class="section-title reveal">В моих глазах</h2>
-    <p class="section-sub reveal"></p>
-
-    <div class="video-list">
-      <!-- Видео 1 — замените src и poster своими -->
-      <div class="video-card reveal">
-        <video src="VID_20261020_142357_028.mp4" poster="I.jpg" preload="metadata" playsinline></video>
-        <div class="video-overlay">
-          <div class="play-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-          <p class="video-caption">Твой смех</p>
-        </div>
-        <div class="video-empty">
-          <span>✦</span>
-          <p>Видео появится здесь</p>
-        </div>
-      </div>
-
-      <!-- Видео 2 -->
-      <div class="video-card reveal">
-        <video src="VID_20261020_142418_235.mp4" poster="Love.jpg" preload="metadata" playsinline></video>
-        <div class="video-overlay">
-          <div class="play-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-          <p class="video-caption">Особенный момент</p>
-        </div>
-        <div class="video-empty">
-          <span>✦</span>
-          <p>Видео появится здесь</p>
-        </div>
-      </div>
-
-      <!-- Видео 3 -->
-      <div class="video-card reveal">
-        <video src="VID_20261020_142439_523.mp4" poster="You.jpg" preload="metadata" playsinline></video>
-        <div class="video-overlay">
-          <div class="play-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-          <p class="video-caption">Просто ты</p>
-        </div>
-        <div class="video-empty">
-          <span>✦</span>
-          <p>Видео появится здесь</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WISHES -->
-  <section class="wishes section">
-    <h2 class="section-title reveal">Мои пожелания</h2>
-    <p class="section-sub reveal">для тебя</p>
+  <!-- 4. ПОЖЕЛАНИЯ -->
+  <section class="section wishes-section">
+    <h2 class="section-title anim-reveal">Мои пожелания</h2>
+    <p class="section-subtitle anim-reveal">для тебя</p>
 
     <ul class="wish-list">
-      <li class="wish-item reveal"><span class="wish-icon">✦</span> Пусть каждый день приносит что-то хорошее</li>
-      <li class="wish-item reveal"><span class="wish-icon">✦</span> Пусть мечты сбываются быстрее, чем ты их загадываешь</li>
-      <li class="wish-item reveal"><span class="wish-icon">✦</span> Пусть рядом будут те, кто тебя по-настоящему ценит</li>
-      <li class="wish-item reveal"><span class="wish-icon">✦</span> Пусть глаза сияют так же ярко, как сейчас</li>
-      <li class="wish-item reveal"><span class="wish-icon">✦</span> И пусть этот год будет к тебе по-настоящему добрым</li>
+      <li class="wish-item anim-reveal"><span>✦</span> Пусть каждый день приносит что-то хорошее</li>
+      <li class="wish-item anim-reveal"><span>✦</span> Пусть мечты сбываются быстрее, чем ты их загадываешь</li>
+      <li class="wish-item anim-reveal"><span>✦</span> Пусть рядом будут те, кто тебя по-настоящему ценит</li>
+      <li class="wish-item anim-reveal"><span>✦</span> Пусть глаза сияют так же ярко, как сейчас</li>
     </ul>
   </section>
 
-  <!-- ======== КОНВЕРТ ======== -->
-  <section class="envelope-section section">
-    <h2 class="section-title reveal">У меня есть кое-что для тебя</h2>
-    <p class="section-sub reveal">маленькое чудо</p>
+  <!-- 5. КОНВЕРТ И QR -->
+  <section class="section envelope-section">
+    <h2 class="section-title anim-reveal">У меня есть кое-что для тебя</h2>
+    <p class="section-subtitle anim-reveal">маленькое чудо</p>
 
-    <div class="envelope-wrap reveal">
-      <!-- Сам конверт -->
-      <div class="envelope" id="envelope">
-        <div class="envelope-back"></div>
-        <div class="envelope-letter"></div>
-        <div class="envelope-front"></div>
-        <div class="envelope-flap"></div>
-        <div class="envelope-seal">✦</div>
+    <div class="envelope-wrap">
+      <!-- Конверт -->
+      <div class="envelope anim-reveal" id="envelope">
+        <div class="env-back"></div>
+        <div class="env-letter"></div>
+        <div class="env-front"></div>
+        <div class="env-flap"></div>
+        <div class="env-seal">✦</div>
       </div>
-      <p class="envelope-hint" id="envelopeHint">нажми на конверт</p>
+      <p class="env-hint" id="envHint">нажми на конверт</p>
 
-      <!-- Карточка с QR — появляется после открытия -->
+      <!-- Карточка с QR -->
       <div class="qr-card" id="qrCard">
         <div class="qr-frame">
-          <img src="Screenshot_20261020_131326_Google.jpg" alt="QR код" class="qr-img" id="qrImg">
-          <div class="qr-placeholder" id="qrPlaceholder"></div>
+          <img src="qr.png" alt="QR" class="qr-img" id="qrImg">
+          <div class="qr-fallback" id="qrFallback"></div>
         </div>
         <p class="qr-caption">наведи камеру телефона</p>
-        <p class="qr-sub">там кое-что для тебя ✦</p>
       </div>
 
-      <!-- Кнопка продолжения -->
-      <button class="continue-btn" id="continueBtn">а теперь чудо ✨</button>
+      <!-- Кнопка Чуда -->
+      <button class="btn-magic" id="magicBtn">а теперь чудо ✨</button>
     </div>
   </section>
 
   <footer class="footer">
     <p>Сделано с теплом · 2026</p>
   </footer>
-
 </main>
 
-<!-- ============ MIRACLE OVERLAY ============ -->
-<div class="miracle-overlay" id="miracleOverlay">
+<!-- ============ ЭКРАН ЧУДА (MIRACLE) ============ -->
+<div class="miracle-screen" id="miracleScreen">
   <div class="miracle-stars" id="miracleStars"></div>
-  <div class="miracle-shower" id="miracleShower"></div>
-
+  
+  <!-- Состояние 1: Звезда -->
   <div class="miracle-wish" id="miracleWish">
     <div class="wish-star">✦</div>
     <p class="wish-title">Загадай желание</p>
     <p class="wish-sub">Оно обязательно сбудется</p>
   </div>
 
-  <div class="miracle-message" id="miracleMessage">
-    <div class="msg-inner" id="msgInner"></div>
-    <button class="miracle-close" id="miracleClose">закрыть ✦</button>
+  <!-- Состояние 2: Текст -->
+  <div class="miracle-msg" id="miracleMsg">
+    <div class="msg-content" id="msgContent"></div>
+    <button class="btn-close-miracle" id="closeMiracleBtn">закрыть ✦</button>
   </div>
 </div>
 
