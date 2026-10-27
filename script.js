@@ -1,16 +1,44 @@
 /* ==========================================
-   САЙТ ДЛЯ АЙПЕРИ - ЧИСТЫЙ JS БЕЗ КОНФЛИКТОВ
+   САЙТ ДЛЯ АЙПЕРИ - ВСЕ НАСТРОЙКИ ЗДЕСЬ
    ========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ---------- 1. ЭЛЕМЕНТЫ ---------- */
+  /* ---------- 1. МУЗЫКА (СВОЙ ФАЙЛ) ---------- */
+  // 👇 ЗАКИНЬ СВОЙ ФАЙЛ В ПАПКУ С САЙТОМ И НАЗОВИ ЕГО music.mp3
+  const bgMusic = new Audio('46ceb9e3-35b1-4dbf-a4d8-eddd897fceae_TikTok.mp3'); 
+  bgMusic.loop = true;
+  bgMusic.volume = 0.5;
+
+  let musicPlaying = false;
+  const musicBtn = document.getElementById('musicBtn');
+
+  function toggleMusic() {
+    if (musicPlaying) {
+      bgMusic.pause();
+      musicPlaying = false;
+      musicBtn.classList.remove('playing');
+    } else {
+      bgMusic.play().then(() => {
+        musicPlaying = true;
+        musicBtn.classList.add('playing');
+      }).catch(err => {
+        console.warn("Музыка не запустилась. Проверь, есть ли файл music.mp3 в папке.", err);
+      });
+    }
+  }
+  musicBtn.addEventListener('click', toggleMusic);
+
+  /* ---------- 2. ЭЛЕМЕНТЫ СТРАНИЦЫ ---------- */
   const splash = document.getElementById('splashScreen');
   const startBtn = document.getElementById('startBtn');
   const splashBg = document.getElementById('splashBg');
   const flashOverlay = document.getElementById('flashOverlay');
   
   const reelsContainer = document.getElementById('reelsContainer');
+  const loveVideo = document.getElementById('loveVideo');
+  const videoOverlay = document.getElementById('videoOverlay');
+  
   const envelope = document.getElementById('envelope');
   const envHint = document.getElementById('envHint');
   const qrCard = document.getElementById('qrCard');
@@ -24,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const msgContent = document.getElementById('msgContent');
   const closeMiracleBtn = document.getElementById('closeMiracleBtn');
 
-  /* ---------- 2. ФОНОВЫЕ ЗВЕЗДЫ НА SPLASH ---------- */
+  /* ---------- 3. ЗАПУСК САЙТА (SPLASH) ---------- */
   const symbols = ['✦', '✧', '❤', '♥', '❋'];
   for (let i = 0; i < 15; i++) {
     const s = document.createElement('span');
@@ -37,7 +65,23 @@ document.addEventListener('DOMContentLoaded', () => {
     splashBg.appendChild(s);
   }
 
-  /* ---------- 3. КОНФЕТТИ (ОПТИМИЗИРОВАНО) ---------- */
+  startBtn.addEventListener('click', () => {
+    if (navigator.vibrate) navigator.vibrate(30);
+    splash.classList.add('hidden');
+    document.body.style.overflow = ''; 
+    setTimeout(() => { spawnConfetti(60); }, 200);
+    setTimeout(() => { spawnConfetti(40); }, 800);
+    
+    // Запуск музыки при первом клике
+    if (!musicPlaying) {
+      bgMusic.play().then(() => {
+        musicPlaying = true;
+        musicBtn.classList.add('playing');
+      }).catch(() => {});
+    }
+  });
+
+  /* ---------- 4. КОНФЕТТИ И ВСПЫШКА ---------- */
   const canvas = document.getElementById('confettiCanvas');
   const ctx = canvas.getContext('2d');
   let particles = [];
@@ -58,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function spawnConfetti(count) {
-    if (particles.length > 80) return; // Защита от лагов
+    if (particles.length > 80) return;
     const colors = ['#e05a7c', '#e8c977', '#f5c6d3', '#ffffff', '#a83a5a'];
     for (let i = 0; i < count; i++) {
       particles.push({
@@ -89,57 +133,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function triggerFlash() {
     flashOverlay.classList.remove('flash-active');
-    void flashOverlay.offsetWidth; // Сброс анимации
+    void flashOverlay.offsetWidth;
     flashOverlay.classList.add('flash-active');
   }
 
-  /* ---------- 4. МУЗЫКА (WEB AUDIO API) ---------- */
-  let audioCtx, musicPlaying = false, musicTimer, noteIdx = 0;
-  const musicBtn = document.getElementById('musicBtn');
-  const melody = [523.25, 659.25, 783.99, 1046.50, 783.99, 659.25, 587.33, 698.46, 880.00, 1046.50, 880.00, 698.46, 523.25, 659.25, 783.99, 659.25];
-
-  function toggleMusic() {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-
-    if (musicPlaying) {
-      musicPlaying = false; musicBtn.classList.remove('playing'); clearInterval(musicTimer);
-    } else {
-      musicPlaying = true; musicBtn.classList.add('playing');
-      const playNote = () => {
-        if (!musicPlaying) return;
-        const now = audioCtx.currentTime, freq = melody[noteIdx % melody.length];
-        
-        const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
-        osc.type = 'sine'; osc.frequency.setValueAtTime(freq, now);
-        gain.gain.setValueAtTime(0, now); gain.gain.linearRampToValueAtTime(0.06, now + 0.04);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
-        osc.connect(gain).connect(audioCtx.destination); osc.start(now); osc.stop(now + 1.6);
-        
-        const osc2 = audioCtx.createOscillator(), gain2 = audioCtx.createGain();
-        osc2.type = 'triangle'; osc2.frequency.setValueAtTime(freq * 2, now);
-        gain2.gain.setValueAtTime(0, now); gain2.gain.linearRampToValueAtTime(0.015, now + 0.04);
-        gain2.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
-        osc2.connect(gain2).connect(audioCtx.destination); osc2.start(now); osc2.stop(now + 1.3);
-        
-        noteIdx++;
-      };
-      playNote(); musicTimer = setInterval(playNote, 720);
-    }
-  }
-  musicBtn.addEventListener('click', toggleMusic);
-
-  /* ---------- 5. ЗАПУСК САЙТА (SPLASH) ---------- */
-  startBtn.addEventListener('click', () => {
-    if (navigator.vibrate) navigator.vibrate(30);
-    splash.classList.add('hidden');
-    document.body.style.overflow = ''; // Разрешаем скролл
-    setTimeout(() => { spawnConfetti(60); }, 200);
-    setTimeout(() => { spawnConfetti(40); }, 800);
-    if (!musicPlaying) toggleMusic(); // Включаем музыку
-  });
-
-  /* ---------- 6. REVEAL АНИМАЦИИ ---------- */
+  /* ---------- 5. АНИМАЦИИ ПОЯВЛЕНИЯ ---------- */
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -150,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
   document.querySelectorAll('.anim-reveal').forEach(el => observer.observe(el));
 
-  /* ---------- 7. ЛЕНТА ТТ (ФОТО) ---------- */
+  /* ---------- 6. ФОТО-ЛЕНТА (ТТ) ---------- */
   const reelCards = document.querySelectorAll('.reel-card');
   const reelObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -161,7 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   reelCards.forEach(card => {
     reelObserver.observe(card);
-    // Обработка ошибки загрузки фото
     const img = card.querySelector('img');
     if (img) {
       img.addEventListener('error', () => {
@@ -179,6 +176,25 @@ document.addEventListener('DOMContentLoaded', () => {
       if (navigator.vibrate) navigator.vibrate(10);
     }
   }, { passive: true });
+
+  /* ---------- 7. ВИДЕО "Я ТЕБЯ ЛЮБЛЮ" ---------- */
+  if (videoOverlay) {
+    videoOverlay.addEventListener('click', () => {
+      if (loveVideo.paused) {
+        loveVideo.play();
+        loveVideo.controls = true;
+        videoOverlay.classList.add('hidden');
+      }
+    });
+  }
+
+  loveVideo.addEventListener('pause', () => {
+    // Если видео закончилось или на паузе в начале, показываем оверлей
+    if (loveVideo.currentTime === 0 || loveVideo.ended) {
+      videoOverlay.classList.remove('hidden');
+      loveVideo.controls = false;
+    }
+  });
 
   /* ---------- 8. КОНВЕРТ И QR ---------- */
   let isEnvelopeOpen = false;
@@ -202,7 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => {
       qrCard.classList.add('show');
-      // Проверка QR картинки
       if (!qrImg.complete || qrImg.naturalWidth === 0) {
         qrImg.style.display = 'none';
         document.getElementById('qrFallback').style.display = 'block';
@@ -306,11 +321,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => sparkle.remove(), 600);
   }, { passive: true });
 
-  // Добавляем CSS для искорки
   const style = document.createElement('style');
   style.textContent = `@keyframes sparkle { 0% { transform: translate(-50%,-50%) scale(0.3); opacity: 1; } 100% { transform: translate(-50%,-100%) scale(1.2); opacity: 0; } }`;
   document.head.appendChild(style);
 
-  // Запрет зума
   document.addEventListener('gesturestart', e => e.preventDefault());
 });
