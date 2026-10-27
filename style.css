@@ -258,6 +258,34 @@ body {
 .letter-sign { font-family: 'Playfair Display', serif; font-style: italic; color: var(--blush); margin-top: 25px; text-align: right; font-size: 14px; }
 .signature { font-family: 'Great Vibes', cursive; font-size: 30px; color: var(--rose); display: inline-block; margin-top: 5px; }
 
+/* Блок с извинениями */
+.letter-apology {
+  background: rgba(232, 201, 119, 0.08); /* Легкий золотистый фон */
+  border-left: 3px solid var(--gold);    /* Золотая полоска слева */
+  padding: 15px 18px;
+  margin: 20px 0;
+  border-radius: 0 12px 12px 0;
+  animation: apologyGlow 3s infinite alternate;
+}
+
+@keyframes apologyGlow {
+  0% { box-shadow: inset 0 0 15px rgba(232, 201, 119, 0.05); }
+  100% { box-shadow: inset 0 0 25px rgba(232, 201, 119, 0.15); }
+}
+
+.letter-apology p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255, 245, 248, 0.95);
+  font-weight: 300;
+  margin: 0;
+}
+
+.letter-apology strong {
+  color: var(--gold); /* Выделяем извинение золотым цветом */
+  font-weight: 500;
+}
+
 /* ==========================================
    5. ПОЖЕЛАНИЯ
    ========================================== */
