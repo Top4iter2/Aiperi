@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- 1. МУЗЫКА (СВОЙ ФАЙЛ) ---------- */
   // 👇 ЗАКИНЬ СВОЙ ФАЙЛ В ПАПКУ С САЙТОМ И НАЗОВИ ЕГО music.mp3
-  const bgMusic = new Audio('46ceb9e3-35b1-4dbf-a4d8-eddd897fceae_TikTok.mp3'); 
+  const bgMusic = new Audio('music.mp3'); 
   bgMusic.loop = true;
   bgMusic.volume = 0.5;
 
@@ -36,8 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const flashOverlay = document.getElementById('flashOverlay');
   
   const reelsContainer = document.getElementById('reelsContainer');
-  const loveVideo = document.getElementById('loveVideo');
-  const videoOverlay = document.getElementById('videoOverlay');
   
   const envelope = document.getElementById('envelope');
   const envHint = document.getElementById('envHint');
@@ -177,26 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 
-  /* ---------- 7. ВИДЕО "Я ТЕБЯ ЛЮБЛЮ" ---------- */
-  if (videoOverlay) {
-    videoOverlay.addEventListener('click', () => {
-      if (loveVideo.paused) {
-        loveVideo.play();
-        loveVideo.controls = true;
-        videoOverlay.classList.add('hidden');
-      }
-    });
-  }
-
-  loveVideo.addEventListener('pause', () => {
-    // Если видео закончилось или на паузе в начале, показываем оверлей
-    if (loveVideo.currentTime === 0 || loveVideo.ended) {
-      videoOverlay.classList.remove('hidden');
-      loveVideo.controls = false;
-    }
-  });
-
-  /* ---------- 8. КОНВЕРТ И QR ---------- */
+  /* ---------- 7. КОНВЕРТ И QR ---------- */
   let isEnvelopeOpen = false;
 
   envelope.addEventListener('click', () => {
@@ -227,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => { magicBtn.classList.add('show'); }, 1800);
   });
 
-  /* ---------- 9. ЧУДО (MIRACLE SCREEN) ---------- */
+  /* ---------- 8. ЧУДО (MIRACLE SCREEN) ---------- */
   let isMiracleOpened = false;
   let starsGenerated = false;
   let miracleTimeouts = [];
@@ -304,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
   magicBtn.addEventListener('click', openMiracle);
   closeMiracleBtn.addEventListener('click', closeMiracle);
 
-  /* ---------- 10. ИСКОРКИ ПРИ КАСАНИИ ---------- */
+  /* ---------- 9. ИСКОРКИ ПРИ КАСАНИИ ---------- */
   let lastTap = 0;
   document.addEventListener('touchstart', (e) => {
     const now = performance.now();
